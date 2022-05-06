@@ -12,5 +12,5 @@ class Engine:
 		self.pe = 0 #出口圧
 		self.ratio_area_throat_exit = 0 #スロートと出口の面積比
 		self.time_combustion = 10 #燃焼時間
-		self.c_bar = 3038 #[m/s] 有効排気速度,\bar{c}
+		self.c_ave = 3038 #[m/s] 平均有効排気速度,\bar{c}
 		self.c_star = 0 #[m/s]

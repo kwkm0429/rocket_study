@@ -37,21 +37,19 @@ class Rocket:
 
 	def set_mass(self):
 		self.mass_total = 4500
-		self.mass_payload =275
+		self.mass_payload = 275
 		for i in range(self.num_stages):
-			self.mass_prop[i] = (self.mass_total*(1-self.mass_ratio)-self.mass_payload)/self.num_stages
-			self.mass_inert[i] = (self.mass_total*self.mass_ratio-self.mass_payload)/self.num_stages
+			self.mass_prop[i] = (self.mass_total*self.mass_ratio-self.mass_payload)/self.num_stages
+			self.mass_inert[i] = (self.mass_total*(1-self.mass_ratio)-self.mass_payload)/self.num_stages
 
-	def calc_delta_v_single(self, mi, mpl, mp, ith):
-		m0 = mi + mpl + mp
-		delta_v = - self.engine.c_bar * math.log((m0-mp)/m0)
-		print("ΔV%d = %f m/s" %(ith, delta_v))
-		return delta_v
-
-	def calc_delta_v_multiple(self):
+	def calc_delta_v(self):
 		self.delta_v = 0
+		m0 = self.mass_payload + sum(self.mass_inert) + sum(self.mass_prop)
 		for i in range(self.num_stages):
-			self.delta_v += self.calc_delta_v_single(self.mass_inert[i], self.mass_payload, self.mass_prop[i], i) 
+			delta_vi = - self.engine.c_ave * math.log((m0-self.mass_prop[i])/m0)
+			self.delta_v += delta_vi
+			m0 -= self.mass_prop[i] + self.mass_inert[i]
+			print("ΔV%d = %f m/s" %(i, delta_vi))
 		print("ΔV = %f m/s" %self.delta_v)
 
 	def update_mass(self, sim):
@@ -61,5 +59,5 @@ class Rocket:
 if __name__ == '__main__':
 	rocket = Rocket()
 	rocket.set_mass()
-	rocket.calc_delta_v_multiple()
+	rocket.calc_delta_v()
 	print(vars(rocket))
