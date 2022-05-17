@@ -10,6 +10,8 @@ class Engine:
 		self.pc = 0 #燃焼室圧
 		self.pt = 0 #スロート圧
 		self.pe = 0 #出口圧
+		self.tc = 0 #燃焼室温度
+		self.mass_dot = 0 #燃料消費率
 		self.ratio_area_throat_exit = 0 #スロートと出口の面積比
 		self.time_combustion = 10 #燃焼時間
 		self.c_ave = 3038 #[m/s] 平均有効排気速度,\bar{c}

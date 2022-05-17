@@ -6,6 +6,13 @@ import numpy as np
 
 from rocket import Rocket
 
+def graph_plot(x, y, label_x, label_y, filename):
+	plt.plot(x, y)
+	plt.xlabel(label_x)
+	plt.ylabel(label_y)
+	plt.savefig(filename)
+	plt.close()
+
 def graph_delta_v(rocket):
 	x = list(range(50))
 	y = list(range(50))

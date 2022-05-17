@@ -6,7 +6,7 @@ import math
 class Earth:
 	def __init__(self):
 		self.radius = 6378*1e3 #[m] 半径
-		self.pressure = 0.1013 #[Pa] 大気圧
+		self.pressure = 0.1013*1e6 #[Pa] 大気圧
 		self.graivty = 9.80665 #[m/s^2] 重力
 		self.height = 100*1e3 #[m] 高さ
 		self.vel_esc = 0 #[m/s] 脱出速度
